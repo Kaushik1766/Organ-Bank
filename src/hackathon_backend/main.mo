@@ -1,22 +1,32 @@
 import Debug "mo:base/Debug";
 import Nat "mo:base/Nat";
 import Text "mo:base/Text";
+import Time "mo:base/Time";
+import List "mo:base/List";
+import Bool "mo:base/Bool";
 
 actor DBank {
-  var abc = 100;
-  Debug.print(debug_show (abc));
 
-  public func topUp() : async Nat {
-    abc += 1;
-    return abc;
+  type Organ = {
+    alive : Bool;
+    name : Text;
+    age : Nat;
+    organName : Text;
+    hospital : Text;
+    bloodGrp : Text;
   };
 
-  public func cashout() : async Nat {
-    abc -= 1;
-    return abc;
+  stable var organList : List.List<Organ> = List.nil<Organ>();
+  // consent form
+  public func consentForm(name : Text, age : Nat, organName : Text, bloodGrp : Text) {
+    let newOrgan : Organ = {
+      alive = true;
+      name = name;
+      age = age;
+      organName = organName;
+      hospital = "none";
+      bloodGrp = bloodGrp;
+    };
+    // organList :=
   };
-  public func greet(name : Text) : async Text {
-    return "Hello " # name;
-  };
-  Debug.print(debug_show (topUp()));
 };
